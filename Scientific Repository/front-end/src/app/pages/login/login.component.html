@@ -1,0 +1,66 @@
+<div class="container row g-2 px-2 ">
+      <div class="container-fluid" id="wrap">
+          <form [formGroup]="loginForm" (ngSubmit)="sendDataLogin()" novalidate >
+              <h2 class="py-3">LOG IN</h2>
+              <div class="form-group px-4 py-2">
+                   <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                  <!---------- Inicio validacion ------------>
+                  <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty) || (loginForm.controls['email'].touched)">
+                    <div *ngIf="loginForm.controls['email'].hasError('required')">
+                      <span class="text-danger">*The field cannot be left blank</span>
+                    </div>
+                    <div *ngIf="loginForm.controls['email'].hasError('maxlength')">
+                        <span class="text-danger">Maximo de caracteres es 80</span>
+                    </div>
+                  </div>  
+                  <!----------- Fin validacion ---------------> 
+              </div>
+                <br>
+              <div class="form-group px-4 pb-2">
+                   <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                  <!--------------- Inicio validacion -------------->
+                 <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty) || (loginForm.controls['password'].touched)">
+                    <div *ngIf="loginForm.controls['password'].hasError('required')">
+                        <span class="text-danger">*The field cannot be left blank</span>
+                    </div>
+                    <div *ngIf="loginForm.controls['password'].hasError('maxlength')">
+                        <span class="text-danger">Maximo de caracteres es 20</span>
+                    </div>
+                  </div>  
+                  <!---------------- Fin validacion ------------------> 
+                </div>
+                <br>
+                <div class="form-group px-4">
+                  <!-- routerLink="/mycases"  -->
+                    <button type="submit" class="btn btn-primary form-control" [disabled]="loginForm.invalid" routerLink="/mycases">Log In</button>
+                </div>
+                <!--------------- Inicio Modal forgot password ---------------->
+                <div>
+                    <p class="pt-4">Forgot Password?, Click <button type="button" class="btn btn-link p-0 pb-1" data-bs-toggle="modal" data-bs-target="#forgotPassModal">Here</button></p>
+                    <div class="modal fade" id="forgotPassModal" tabindex="-1" aria-labelledby="forgotPassModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="forgotPassModalLabel">Recover Your Account</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body ">
+                              <label for="emailrecovery" >Enter your email for recover your password</label>
+                              <input type="email" class="form-control" name="emailrecovery" id="emailrecovery">
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Send</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+                <!------------- Termino Modal forgot password ------------>
+                <div class="mb-3">
+                    <a routerLink="/signin">Create new Account</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
